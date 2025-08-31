@@ -17,9 +17,11 @@ public class Cliente {
     private final Float rendaMensal;
     private final Integer idade;
     private final String profissao;
+    private ClassificacaoRisco classificacaoRisco;
 
 
     public Cliente(String nome, String email, String telefone, String cpf, Float rendaMensal, Integer idade, String profissao) {
+
 
         if (nome == null || nome.isEmpty()) throw new ParametrosInvalidosException("nome invalido");
 
@@ -37,6 +39,7 @@ public class Cliente {
         this.rendaMensal = rendaMensal;
         this.idade = idade;
         this.profissao = profissao;
+        this.classificacaoRisco = avaliar();
     }
 
     public UUID getId() {
@@ -85,4 +88,24 @@ public class Cliente {
                 ", profissao='" + profissao + '\'' +
                 '}';
     }
+
+    private ClassificacaoRisco avaliar() {
+        float rendaMensal = this.getRendaMensal();
+        int idade = this.getIdade();
+
+        if (rendaMensal < 3000) {
+            return ClassificacaoRisco.ALTO;
+        }
+
+        if ((rendaMensal >= 3000 && rendaMensal <= 6000) || (idade <= 30)) {
+            return ClassificacaoRisco.MEDIO;
+        }
+
+        if (rendaMensal > 6000 && idade > 30) {
+            return ClassificacaoRisco.BAIXO;
+        }
+
+        throw new ParametrosInvalidosException("Não foi possível classificar o risco do cliente");
+    }
+
 }
