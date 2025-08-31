@@ -10,7 +10,6 @@ import java.util.UUID;
 public class ClienteEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String nome;
     private String email;

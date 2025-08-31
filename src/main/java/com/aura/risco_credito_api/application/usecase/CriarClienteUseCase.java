@@ -1,5 +1,6 @@
 package com.aura.risco_credito_api.application.usecase;
 
+import com.aura.risco_credito_api.core.domain.Cliente;
 import com.aura.risco_credito_api.core.gateway.ClienteRepository;
 import com.aura.risco_credito_api.infrastructure.persistence.ClienteEntity;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,32 @@ public class CriarClienteUseCase {
         this.clienteRepository = clienteRepository;
     }
 
-    public void criarCliente(ClienteEntity clienteEntity) {
-        // Lógica para criar um cliente
-        // Exemplo:
-        // Telefone telefone = new Telefone();
-        // Email email = new Email();
-        // Cpf cpf = new Cpf();
-        // Cliente cliente = new Cliente(...);
-        // clienteRepository.salvar(cliente);
+    public ClienteEntity criarCliente(ClienteEntity clienteEntity) {
+
+        Cliente cliente = new Cliente(
+                clienteEntity.getId(),
+                clienteEntity.getNome(),
+                clienteEntity.getEmail(),
+                clienteEntity.getTelefone(),
+                clienteEntity.getCpf(),
+                clienteEntity.getRendaMensal(),
+                clienteEntity.getIdade(),
+                clienteEntity.getProfissao()
+        );
+
+       Cliente clienteSalvo = clienteRepository.salvar(cliente);
+
+        ClienteEntity clienteEntitySalvo = new ClienteEntity(
+                clienteSalvo.getId(),
+                clienteSalvo.getNome(),
+                clienteSalvo.getEmail().getEmail(),
+                clienteSalvo.getTelefone().getTelefone(),
+                clienteSalvo.getCpf().getCpf(),
+                clienteSalvo.getRendaMensal(),
+                clienteSalvo.getIdade(),
+                clienteSalvo.getProfissao()
+        );
+
+        return clienteEntitySalvo;
     }
 }

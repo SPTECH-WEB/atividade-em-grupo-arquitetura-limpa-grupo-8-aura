@@ -5,9 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface SpringDataUserRepository extends JpaRepository<ClienteEntity, String> {
-//    Optional<ClienteEntity> findByCpf(String cpf);
-//    ClienteEntity save(ClienteEntity clienteEntity);
+public interface SpringDataUserRepository extends JpaRepository<ClienteEntity, UUID> {
+
 }

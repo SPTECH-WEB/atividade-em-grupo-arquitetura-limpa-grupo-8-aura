@@ -20,7 +20,7 @@ public class Cliente {
     private ClassificacaoRisco classificacaoRisco;
 
 
-    public Cliente(String nome, String email, String telefone, String cpf, Float rendaMensal, Integer idade, String profissao) {
+    public Cliente(UUID id, String nome, String email, String telefone, String cpf, Float rendaMensal, Integer idade, String profissao) {
 
 
         if (nome == null || nome.isEmpty()) throw new ParametrosInvalidosException("nome invalido");
@@ -31,7 +31,7 @@ public class Cliente {
 
         if (profissao.trim().isEmpty()) profissao = null;
 
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.nome = nome;
         this.email = Email.of(email);
         this.telefone = Telefone.of(telefone);
