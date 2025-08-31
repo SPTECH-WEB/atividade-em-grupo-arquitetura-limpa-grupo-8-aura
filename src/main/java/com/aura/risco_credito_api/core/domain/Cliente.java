@@ -3,7 +3,7 @@ package com.aura.risco_credito_api.core.domain;
 import com.aura.risco_credito_api.core.domain.atributo.Cpf;
 import com.aura.risco_credito_api.core.domain.atributo.Email;
 import com.aura.risco_credito_api.core.domain.atributo.Telefone;
-import com.aura.risco_credito_api.core.domain.exception.ParametrosInvalidosException;
+import com.aura.risco_credito_api.core.exception.ParametrosInvalidosException;
 
 import java.util.UUID;
 

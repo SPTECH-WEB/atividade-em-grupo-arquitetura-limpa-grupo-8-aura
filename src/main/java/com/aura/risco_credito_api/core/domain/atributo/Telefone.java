@@ -1,6 +1,6 @@
 package com.aura.risco_credito_api.core.domain.atributo;
 
-import com.aura.risco_credito_api.core.domain.exception.ParametrosInvalidosException;
+import com.aura.risco_credito_api.core.exception.ParametrosInvalidosException;
 
 public class Telefone {
 
