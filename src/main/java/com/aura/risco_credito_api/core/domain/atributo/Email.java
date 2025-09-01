@@ -21,6 +21,4 @@ public class Email {
     public String getEmail() {
         return email;
     }
-
-
 }

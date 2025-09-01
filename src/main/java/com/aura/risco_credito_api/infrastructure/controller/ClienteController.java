@@ -8,6 +8,9 @@ import com.aura.risco_credito_api.core.domain.atributo.Email;
 import com.aura.risco_credito_api.core.domain.atributo.Telefone;
 import com.aura.risco_credito_api.infrastructure.dto.GenericoClienteResponse;
 import com.aura.risco_credito_api.infrastructure.dto.PostClienteRequestDto;
+import com.aura.risco_credito_api.infrastructure.mapper.ClienteDtoMapper;
+import com.aura.risco_credito_api.infrastructure.mapper.ClienteEntityMapper;
+import com.aura.risco_credito_api.infrastructure.mapper.ClienteMapper;
 import com.aura.risco_credito_api.infrastructure.persistence.ClienteEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,32 +32,10 @@ public class ClienteController {
     @PostMapping("/cadastrar")
     public ResponseEntity<GenericoClienteResponse> cadastrarCliente(@RequestBody PostClienteRequestDto dto){
 
-        ClienteEntity cliente = new ClienteEntity(
-                UUID.randomUUID(),
-                dto.nome(),
-                dto.email(),
-                dto.telefone(),
-                dto.cpf(),
-                dto.rendaMensal(),
-                dto.idade(),
-                dto.profissao()
-        );
-
+        ClienteEntity cliente = ClienteEntityMapper.of(dto);
         Cliente clienteCriado = criarClienteUseCase.criarCliente(cliente);
 
-        GenericoClienteResponse clienteDto = new GenericoClienteResponse(
-                clienteCriado.getId(),
-                clienteCriado.getNome(),
-                clienteCriado.getEmail().getEmail(),
-                clienteCriado.getTelefone().getTelefone(),
-                clienteCriado.getCpf().getCpf(),
-                clienteCriado.getRendaMensal(),
-                clienteCriado.getIdade(),
-                clienteCriado.getProfissao(),
-                clienteCriado.getClassificacaoRisco().getDescricao(),
-                clienteCriado.getClassificacaoRisco().getEstrategiaContato()
-        );
-
+        GenericoClienteResponse clienteDto = ClienteDtoMapper.toResponse(clienteCriado);
         return ResponseEntity.ok(clienteDto);
     }
 
@@ -63,18 +44,7 @@ public class ClienteController {
 
         Cliente cliente = consultarClienteUseCase.ConsultarClienteUseCase(id);
 
-        GenericoClienteResponse clienteDto = new GenericoClienteResponse(
-                cliente.getId(),
-                cliente.getNome(),
-                cliente.getEmail().getEmail(),
-                cliente.getTelefone().getTelefone(),
-                cliente.getCpf().getCpf(),
-                cliente.getRendaMensal(),
-                cliente.getIdade(),
-                cliente.getProfissao(),
-                cliente.getClassificacaoRisco().getDescricao(),
-                cliente.getClassificacaoRisco().getEstrategiaContato()
-        );
+        GenericoClienteResponse clienteDto = ClienteDtoMapper.toResponse(cliente);
         return ResponseEntity.ok(clienteDto);
     }
 }

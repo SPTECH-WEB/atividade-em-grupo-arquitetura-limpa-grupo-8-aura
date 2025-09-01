@@ -13,6 +13,13 @@
 - **Luiz Felipe Candido Mendonça**: Responsável pela organização dos arquivos segundo a **Clean Architecture** e pela revisão de código.
 - **Gustavo Eduardo Basi da Cruz**: Responsável pela criação de **mappers** e **adapters** entre as camadas da aplicação.
 
+# 🚀 Rodando Spring Boot
+
+## 1. Build
+./mvnw clean package
+
+## 2. Executar
+java -jar target/*.jar
 
 # 📊 API de Avaliação de Risco de Crédito
 
