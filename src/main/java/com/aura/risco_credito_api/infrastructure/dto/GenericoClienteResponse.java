@@ -10,5 +10,7 @@ public record GenericoClienteResponse(
         String cpf,
         Float rendaMensal,
         Integer idade,
-        String profissao
+        String profissao,
+        String categoria,
+        String estrategiaContato
 ) { }

@@ -13,7 +13,7 @@ public class CriarClienteUseCase {
         this.clienteRepository = clienteRepository;
     }
 
-    public ClienteEntity criarCliente(ClienteEntity clienteEntity) {
+    public Cliente criarCliente(ClienteEntity clienteEntity) {
 
         Cliente cliente = new Cliente(
                 clienteEntity.getId(),
@@ -28,17 +28,7 @@ public class CriarClienteUseCase {
 
        Cliente clienteSalvo = clienteRepository.salvar(cliente);
 
-        ClienteEntity clienteEntitySalvo = new ClienteEntity(
-                clienteSalvo.getId(),
-                clienteSalvo.getNome(),
-                clienteSalvo.getEmail().getEmail(),
-                clienteSalvo.getTelefone().getTelefone(),
-                clienteSalvo.getCpf().getCpf(),
-                clienteSalvo.getRendaMensal(),
-                clienteSalvo.getIdade(),
-                clienteSalvo.getProfissao()
-        );
 
-        return clienteEntitySalvo;
+        return clienteSalvo;
     }
 }

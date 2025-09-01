@@ -108,4 +108,7 @@ public class Cliente {
         throw new ParametrosInvalidosException("Não foi possível classificar o risco do cliente");
     }
 
+    public ClassificacaoRisco getClassificacaoRisco() {
+        return classificacaoRisco;
+    }
 }
